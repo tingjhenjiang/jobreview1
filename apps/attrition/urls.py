@@ -5,6 +5,7 @@ from apps.attrition.views import EndpointViewSet
 from apps.attrition.views import MLAlgorithmViewSet
 from apps.attrition.views import MLAlgorithmStatusViewSet
 from apps.attrition.views import MLRequestViewSet
+from apps.attrition.views import PredictView
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r"endpoints", EndpointViewSet, basename="endpoints")
@@ -14,4 +15,7 @@ router.register(r"mlrequests", MLRequestViewSet, basename="mlrequests")
 
 urlpatterns = [
     re_path(r"^api/attrition/v1/", include(router.urls)),
+    re_path(
+        r"^api/attrition/v1/(?P<endpoint_name>.+)/predict$", PredictView.as_view(), name="predict"
+    ),
 ]

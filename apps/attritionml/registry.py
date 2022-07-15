@@ -2,6 +2,7 @@ from apps.attrition.models import Endpoint
 from apps.attrition.models import MLAlgorithm
 from apps.attrition.models import MLAlgorithmStatus
 
+
 class MLRegistry:
     def __init__(self):
         self.endpoints = {}

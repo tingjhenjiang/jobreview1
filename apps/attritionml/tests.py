@@ -41,28 +41,24 @@ class MLTests(TestCase):
             "YearsAtCompany":6,
             "YearsInCurrentRole":4,
             "YearsSinceLastPromotion":0,
-            "YearsWithCurrManager":5,
-
+            "YearsWithCurrManager":5
         }
         my_alg = AttritionClassifier()
         response = my_alg.compute_prediction(input_data)
         print(response)
-        #response = my_alg.compute_prediction(input_data)
-        #self.assertTrue(isinstance(response, dict))
         self.assertEqual('OK', response['status'])
         self.assertTrue('label' in response)
-        #self.assertEqual('<=50K', response['label'])
 
     def test_registry(self):
         registry = MLRegistry()
         self.assertEqual(len(registry.endpoints), 0)
         endpoint_name = "attrition_classifier"
         algorithm_object = AttritionClassifier()
-        algorithm_name = "LogicticRegL2"
+        algorithm_name = "LogisticRegL2"
         algorithm_status = "production"
         algorithm_version = "0.0.1"
         algorithm_owner = "Piotr"
-        algorithm_description = "LogicticRegL2 with simple pre- and post-processing"
+        algorithm_description = "Random Forest with simple pre- and post-processing"
         algorithm_code = inspect.getsource(AttritionClassifier)
         # add to registry
         registry.add_algorithm(endpoint_name, algorithm_object, algorithm_name,
